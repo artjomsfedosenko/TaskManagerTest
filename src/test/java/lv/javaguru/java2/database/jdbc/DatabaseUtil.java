@@ -55,7 +55,7 @@ public class DatabaseUtil extends DAOImpl {
             try {
                 connection = getConnection();
                 PreparedStatement preparedStatement = connection
-                        .prepareStatement("delete from " + tableName);
+                        .prepareStatement("DELETE FROM " + tableName);
                 preparedStatement.executeUpdate();
             } catch (Throwable e) {
                 System.out.println("Exception while execute cleanDatabase() for table " + tableName);
@@ -69,7 +69,9 @@ public class DatabaseUtil extends DAOImpl {
 
     private List<String> getTableNames() {
         List<String> tableNames = new ArrayList<String>();
-        tableNames.add("USERS");
+        tableNames.add("users");
+        tableNames.add("tasks");
+        tableNames.add("comments");
         return tableNames;
     }
 

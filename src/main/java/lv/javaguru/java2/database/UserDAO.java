@@ -1,11 +1,12 @@
 package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.domain.User;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UserDAO {
+public interface UserDAO extends GenericCrudDAO<User, Long>{
 
     User save(User user);
 
@@ -17,4 +18,5 @@ public interface UserDAO {
 
     List<User> getAll();
 
+    void testInterface();
 }

@@ -19,7 +19,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into USERS values (default, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("INSERT INTO users VALUES (default, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
 
@@ -45,7 +45,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from USERS where UserID = ?");
+                    .prepareStatement("SELECT * FROM users WHERE UserID = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             User user = null;
@@ -70,7 +70,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         Connection connection = null;
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from USERS");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM users");
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -95,7 +95,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from USERS where UserID = ?");
+                    .prepareStatement("DELETE FROM users WHERE UserID = ?");
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
@@ -131,4 +131,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
+    @Override
+    public void testInterface() {
+        System.out.println("Interface tested");
+    }
 }

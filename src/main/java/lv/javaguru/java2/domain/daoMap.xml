@@ -1,0 +1,4 @@
+<dao>
+    <entity>lv.javaguru.java2.domain.Task</entity>
+    <implementaion>lv.javaguru.java2.database.jdbc.TaskDAOImpl</implementaion>
+</dao>

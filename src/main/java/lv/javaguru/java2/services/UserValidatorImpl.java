@@ -1,5 +1,8 @@
 package lv.javaguru.java2.services;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserValidatorImpl implements UserValidator {
 
     @Override

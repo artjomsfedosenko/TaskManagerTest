@@ -66,3 +66,9 @@ ADD FOREIGN KEY (`updated_by`) REFERENCES `users` (`UserId`);
 
 ALTER TABLE `tasks`
   ADD COLUMN `task_state` CHAR(128);
+
+-- Migration 2
+
+ALTER TABLE `users` ADD COLUMN `passwor` TEXT;
+ALTER TABLE `tasks` CHANGE `task_state` `task_state` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
+ALTER TABLE `tasks` CHANGE `priority` `priority` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;

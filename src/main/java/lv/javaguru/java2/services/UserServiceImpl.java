@@ -3,12 +3,17 @@ package lv.javaguru.java2.services;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+@Component
 public class UserServiceImpl implements UserService {
 
-    private UserDAO userDAO = new UserDAOImpl();
+    @Autowired
+    private UserDAO userDAO;
+    @Autowired
     private UserValidator userValidator = new UserValidatorImpl();
 
     @Override

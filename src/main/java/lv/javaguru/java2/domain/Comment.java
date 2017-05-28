@@ -8,7 +8,7 @@ public class Comment {
     private String content;
     private User author;
     private Date creationDate;
-    private Task task;
+    //private Task task;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class Comment {
         this.creationDate = creationDate;
     }
 
-    public Task getTask() {
+    /*public Task getTask() {
         return task;
     }
 
     public void setTask(Task task) {
         this.task = task;
-    }
+    }*/
 }

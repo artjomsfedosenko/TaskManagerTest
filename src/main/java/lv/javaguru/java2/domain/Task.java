@@ -1,47 +1,59 @@
 package lv.javaguru.java2.domain;
 
-import lv.javaguru.java2.database.annotations.Relation;
-import lv.javaguru.java2.database.enumerations.RelationTypes;
 import lv.javaguru.java2.domain.enumerations.Priorities;
 import lv.javaguru.java2.domain.enumerations.TaskStates;
 
+import javax.persistence.*;
 import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name="tasks")
 public class Task {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", columnDefinition = "int(11)")
     private Long taskId;
+
+    @Column(name="summary", columnDefinition = "char(128)")
     private String summary;
+
+    @Column(name="content", columnDefinition = "text")
     private String description;
 
-    @Relation(
-            relationType = RelationTypes.MANY_TO_ONE,
-            targetClass = User.class,
-            columnName = "assigned_to"
-    )
+    @ManyToOne (fetch=FetchType.EAGER)
+    @JoinColumn(name = "assigned_to")
     private User assignedTo;
 
-    @Relation(
-            relationType = RelationTypes.MANY_TO_ONE,
-            targetClass = User.class,
-            columnName = "created_by"
-    )
+    @ManyToOne (fetch=FetchType.EAGER)
+    @JoinColumn(name = "created_by")
     private User createdBy;
+
+    @Column(name="creation_date", columnDefinition = "datetime")
     private Date creationDate;
+
+    @Column(name="estimate", columnDefinition = "datetime")
     private Date estimate;
+
+    @Column(name="last_updated", columnDefinition = "datetime")
     private Date lastUpdated;
 
-    @Relation(
-            relationType = RelationTypes.MANY_TO_ONE,
-            targetClass = User.class,
-            columnName = "updated_by"
-    )
+    @ManyToOne (fetch=FetchType.EAGER)
+    @JoinColumn(name = "updated_by")
     private User lastUpdatedBy;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority")
     private Priorities priority;
 
+    @Transient
     private List<Comment> comments = new ArrayList<Comment>();
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "task_state")
     private TaskStates taskState;
 
     public Long getTaskId() {

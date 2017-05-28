@@ -6,7 +6,7 @@ import org.apache.poi.ss.formula.functions.T;
 import java.util.List;
 import java.util.Optional;
 
-public interface UserDAO extends GenericCrudDAO<User, Long>{
+public interface UserDAO {
 
     User save(User user);
 
@@ -18,5 +18,4 @@ public interface UserDAO extends GenericCrudDAO<User, Long>{
 
     List<User> getAll();
 
-    void testInterface();
 }

@@ -3,6 +3,7 @@ package lv.javaguru.java2.database.jdbc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     public User save(User user) throws DBException {
@@ -116,8 +118,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update USERS set FirstName = ?, LastName = ? " +
-                            "where UserID = ?");
+                    .prepareStatement("UPDATE users SET FirstName = ?, LastName = ? " +
+                            "WHERE UserID = ?");
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setLong(3, user.getUserId());
@@ -129,10 +131,5 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         } finally {
             closeConnection(connection);
         }
-    }
-
-    @Override
-    public void testInterface() {
-        System.out.println("Interface tested");
     }
 }
